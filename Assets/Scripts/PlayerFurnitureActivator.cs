@@ -10,11 +10,15 @@ public class PlayerFurnitureActivator : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Furniture")) {
             _currentFurniture = other.GetComponent<FurnitureMaterialSwitcher>();
+            _currentFurniture.Highlight = true;
         }
     }
 
     private void OnTriggerExit(Collider other) {
-        _currentFurniture = null;
+        if (_currentFurniture != null) {
+            _currentFurniture.Highlight = false;
+            _currentFurniture = null;
+        }
     }
 
     public void TryActivatingFurniture() {
