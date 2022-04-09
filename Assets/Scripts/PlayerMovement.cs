@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
 
     private void Update() {
-        _controller.Move(_velocity * Time.deltaTime);
+        Vector3 move = _velocity.x * _controller.transform.right
+            + _velocity.y * _controller.transform.up
+            + _velocity.z * _controller.transform.forward;
+        _controller.Move(move * Time.deltaTime);
     }
 }
